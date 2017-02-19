@@ -1,4 +1,6 @@
 class RepairsController < ApplicationController 
+  before_action :authenticate_user!
+
   def index
     @repairs = Repair.all.order("created_at DESC")
   end
