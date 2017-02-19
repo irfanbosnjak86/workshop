@@ -43,6 +43,11 @@ gem 'devise', '~> 4.2'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  #RSpec for testing
+  gem 'rspec-rails', '~> 3.5'
+  #Database Cleaner is a set of strategies for cleaning your database in Ruby. The original use case was to ensure a clean state during tests.
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
 end
 
 group :development do
