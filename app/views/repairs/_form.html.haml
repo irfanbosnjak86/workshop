@@ -1,0 +1,42 @@
+.row 
+  = form_for @repair, html: { class: 'form-horizontal' } do |f|
+    - if @repair.errors.any?
+      .alert.alert-danger
+        %ul
+          - @repair.errors.full_messages.each do |msg|
+            %li= msg
+
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control'
+
+    .form-group
+      = f.label :malfunction_desc
+      = f.text_area :malfunction_desc, class: 'form-control'
+
+    .form-group
+      = f.label :repair_desc
+      = f.text_area :repair_desc, class: 'form-control'
+
+    .form-group
+      = f.label :repair_date
+      = f.date_field :repair_date, class: 'form-control', style: 'width: 20%'
+
+    .form-group
+      = f.label :status
+      = f.text_field :status, class: 'form-control'
+
+    
+    .form-group
+      %label 
+        Price
+      .input-group
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-eur
+        = f.number_field :price, step: 0.01, class: 'form-control', style: 'width: 20%'
+      
+
+
+    .form-group
+      = f.submit 'Save Repair', class: 'btn btn-success'
+      = link_to 'Cancel', repairs_path, class: 'btn btn-default'
