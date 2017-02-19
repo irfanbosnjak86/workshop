@@ -1,5 +1,6 @@
 class RepairsController < ApplicationController 
   def index
+    @repairs = Repair.all.order("created_at DESC")
   end
 
   def new

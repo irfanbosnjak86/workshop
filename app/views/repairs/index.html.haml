@@ -1,1 +1,19 @@
-%h2 Repairs Index Page
+.row
+  %h2
+    Repairs Index Page
+    = link_to "New Repair", new_repair_path, class: "btn btn-primary pull-right"
+.row
+  %table.table.tablep-hover
+    %thead
+      %tr 
+        %th Title
+        %th Malfunction Desc
+        %th Status
+        %th Price
+    %tbody
+      - @repairs.each do |f|
+        %tr
+          %td= f.title
+          %td= f.malfunction_desc
+          %td= f.status 
+          %td= f.price.to_f
