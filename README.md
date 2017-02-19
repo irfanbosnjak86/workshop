@@ -6,19 +6,14 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
-
-* System dependencies
+  v 2.3.1
+* Rails version
+  v 5 
 
 * Configuration
+  Create devise User:
+    User.create(email: "irfan@workshop.com", password: "workshop", password_confirmation: "workshop")
+
 
 * Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  bin/rails setup
