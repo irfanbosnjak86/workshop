@@ -1,6 +1,6 @@
 class RepairsController < ApplicationController 
   before_action :authenticate_user!
-  before_action :set_repair, only: [:show]
+  before_action :set_repair, only: [:show, :edit, :update]
 
   def index
     @repairs = Repair.all.order("created_at DESC")
@@ -15,8 +15,22 @@ class RepairsController < ApplicationController
 
   def create
     @repair = Repair.new(repair_params)
-    @repair.save
-    redirect_to repairs_path
+    if @repair.save
+      redirect_to repairs_path
+    else
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @repair.update(repair_params)
+      redirect_to repair_path(@repair)
+    else
+      render :edit
+    end
   end
 
   private 

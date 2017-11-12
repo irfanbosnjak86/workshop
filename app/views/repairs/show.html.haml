@@ -4,3 +4,8 @@
   %h2= @repair.title
   %p= @repair.malfunction_desc
   %p= @repair.price
+  
+  %br/
+
+  = link_to 'Back', repairs_path, class: 'btn btn-default'
+  = link_to 'Edit', edit_repair_path(@repair), class: 'btn btn-primary'

@@ -3,6 +3,8 @@ require "rails_helper"
 RSpec.describe RepairsController, type: :controller do
   login_user
 
+  let(:repair) {FactoryGirl.create(:repair)}
+
   describe 'index' do
     it 'has a 200 status code' do
       get :index
@@ -28,8 +30,25 @@ RSpec.describe RepairsController, type: :controller do
 
   describe 'show' do
     it 'has a 200 status code' do
-      get :show
+      get :show, {id: repair.id}
       expect(response.status).to eq(200)
+    end
+  end
+
+  describe 'edit' do
+    it 'has a 200 status code' do
+      get :edit, {id: repair.id}
+      expect(response.status).to eq(200)
+    end
+  end
+
+  describe 'update' do
+    it 'has a 302 status code and updates existing repair' do
+      patch :update, id: repair.id, repair: { malfunction_desc: "Edited"}
+
+      expect(response.status).to eq(302)
+      repair.reload
+      expect(repair.malfunction_desc).to eq("Edited")
     end
   end
 end
