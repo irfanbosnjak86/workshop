@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :repair do
     title "MyString"
-    description "MyText"
+    malfunction_desc "MyText"
     price "9.99"
   end
 end

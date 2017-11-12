@@ -11,9 +11,9 @@
         %th Status
         %th Price
     %tbody
-      - @repairs.each do |f|
+      - @repairs.each do |repair|
         %tr
-          %td= f.title
-          %td= f.malfunction_desc
-          %td= f.status 
-          %td= f.price.to_f
+          %td= link_to repair.title, repair_path(repair)
+          %td= repair.malfunction_desc
+          %td= repair.status 
+          %td= repair.price.to_f
