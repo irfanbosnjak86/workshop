@@ -9,3 +9,5 @@
 
   = link_to 'Back', repairs_path, class: 'btn btn-default'
   = link_to 'Edit', edit_repair_path(@repair), class: 'btn btn-primary'
+  = link_to 'Delete', repair_path(@repair), method: :delete, data: { confirm: "Are you sure?"}, 
+    class: 'btn btn-danger'

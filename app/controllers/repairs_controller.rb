@@ -1,6 +1,6 @@
 class RepairsController < ApplicationController 
   before_action :authenticate_user!
-  before_action :set_repair, only: [:show, :edit, :update]
+  before_action :set_repair, only: [:show, :edit, :update, :destroy]
 
   def index
     @repairs = Repair.all.order("created_at DESC")
@@ -31,6 +31,12 @@ class RepairsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @repair.destroy
+    redirect_to repairs_path
+    flash[:danger] = "The repair is successfully deleted!"
   end
 
   private 

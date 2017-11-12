@@ -51,4 +51,16 @@ RSpec.describe RepairsController, type: :controller do
       expect(repair.malfunction_desc).to eq("Edited")
     end
   end
+
+  describe 'delete' do
+    it 'has a 302 status code' do
+      delete :destroy, {id: repair.id}
+      expect(response.status).to eq(302)
+    end
+
+    it "delete's the repair" do
+      repair.reload
+      expect { delete :destroy, id: repair.id }.to change { Repair.count }.by(-1)
+    end
+  end
 end
