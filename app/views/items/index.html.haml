@@ -1,20 +1,32 @@
-%p#notice= notice
-%h1 Items
-%table
-  %thead
-    %tr
-      %th Name
-      %th Status
-      %th Received date
-      %th{:colspan => "4"}
-  %tbody
-    - @items.each do |item|
-      %tr
-        %td= item.name
-        %td= item.status
-        %td= item.received_date
-        %td= link_to 'Show', item
-        %td= link_to 'Edit', edit_item_path(item)
-        %td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Item', new_item_path
+.row
+  %h2 
+    List of all Items
+    - if current_user
+      = link_to 'New Item', new_item_path, class: "btn btn-success pull-right"
+  %hr/
+  %br/
+
+.row
+  - if @items.present?
+    %table.table.table-hover.table-condensed
+      %thead
+        %tr
+          %th #
+          %th Name
+          %th Status
+          %th Received date
+          %th Options
+      %tbody
+        - @items.each_with_index do |item, index|
+          %tr
+            %td= index + 1
+            %td= link_to item.name, item
+            %td= item.status
+            %td= item.received_date
+            %td
+              = link_to 'Show', item, class: "btn btn-xs btn-default"
+              = link_to 'Edit', edit_item_path(item), class: "btn btn-xs btn-primary"
+              = link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger"
+  - else
+    %p
+      You don't have any items :(

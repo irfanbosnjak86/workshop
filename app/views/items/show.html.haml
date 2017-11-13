@@ -1,13 +1,18 @@
-%p#notice= notice
-%p
-  %strong Name:
+
+%h2
+  Item: 
   = @item.name
-%p
+%hr/
+
+%p 
   %strong Status:
   = @item.status
 %p
   %strong Received date:
   = @item.received_date
-= link_to 'Edit', edit_item_path(@item)
-|
-= link_to 'Back', items_path
+
+%br/
+%hr/
+= link_to 'Edit', edit_item_path(@item), class: 'btn btn-primary'
+= link_to 'Back', items_path, class: 'btn btn-default'
+= link_to 'Delete', item_path(@item), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'
