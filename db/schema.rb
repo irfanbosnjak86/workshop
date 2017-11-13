@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112232002) do
+ActiveRecord::Schema.define(version: 20171113002015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "items", force: :cascade do |t|
+    t.string   "name"
+    t.string   "status"
+    t.datetime "received_date"
+    t.integer  "workshop_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["workshop_id"], name: "index_items_on_workshop_id", using: :btree
+  end
 
   create_table "repairs", force: :cascade do |t|
     t.string   "title"
@@ -52,5 +62,6 @@ ActiveRecord::Schema.define(version: 20171112232002) do
     t.index ["user_id"], name: "index_workshops_on_user_id", using: :btree
   end
 
+  add_foreign_key "items", "workshops"
   add_foreign_key "workshops", "users"
 end
