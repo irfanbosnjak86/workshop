@@ -16,6 +16,7 @@ class RepairsController < ApplicationController
   def create
     @repair = Repair.new(repair_params)
     if @repair.save
+      flash[:success] = "Repair added."
       redirect_to repairs_path
     else
       render :new
@@ -27,6 +28,7 @@ class RepairsController < ApplicationController
 
   def update
     if @repair.update(repair_params)
+      flash[:success] = "Repair Updated"
       redirect_to repair_path(@repair)
     else
       render :edit

@@ -20,7 +20,8 @@ class WorkshopsController < ApplicationController
     @workshop = current_user.workshops.new(workshop_params)
 
     if @workshop.save
-      redirect_to @workshop, notice: 'Workshop was successfully created.'
+      flash[:success] = 'Workshop was successfully created.'
+      redirect_to @workshop
     else
       render :new 
     end
@@ -28,7 +29,8 @@ class WorkshopsController < ApplicationController
 
   def update
     if @workshop.update(workshop_params)
-      redirect_to @workshop, notice: 'Workshop was successfully updated.' 
+      flash[:success] = 'Workshop was successfully updated.'
+      redirect_to @workshop  
     else
       render :edit
     end
@@ -36,7 +38,8 @@ class WorkshopsController < ApplicationController
 
   def destroy
     @workshop.destroy
-    redirect_to workshops_url, notice: 'Workshop was successfully destroyed.' 
+    flash[:alert] = 'Workshop was successfully destroyed.'
+    redirect_to workshops_url
   end
 
   private
