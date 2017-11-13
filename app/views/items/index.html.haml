@@ -1,0 +1,20 @@
+%p#notice= notice
+%h1 Items
+%table
+  %thead
+    %tr
+      %th Name
+      %th Status
+      %th Received date
+      %th{:colspan => "4"}
+  %tbody
+    - @items.each do |item|
+      %tr
+        %td= item.name
+        %td= item.status
+        %td= item.received_date
+        %td= link_to 'Show', item
+        %td= link_to 'Edit', edit_item_path(item)
+        %td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Item', new_item_path

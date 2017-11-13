@@ -1,0 +1,17 @@
+= form_for(workshop) do |f|
+  - if workshop.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(workshop.errors.count, "error")
+        prohibited this workshop from being saved:
+      %ul
+        - workshop.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_area :description
+  .actions
+    = f.submit

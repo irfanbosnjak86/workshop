@@ -1,0 +1,29 @@
+.row
+  %h2 
+    List of all Workshops
+    = link_to 'New Workshop', new_workshop_path, class: "btn btn-success pull-right"
+  %hr/
+  %br/
+
+.row
+  %table.table.table-hover.table-condensed
+    %thead
+      %tr
+        %th #
+        %th Name
+        %th Description
+        %th User
+        %th Options
+    %tbody
+      - @workshops.each_with_index do |workshop, index|
+        %tr
+          %td= index + 1 
+          %td= link_to workshop.name, workshop_path(workshop)
+          %td= workshop.description
+          %td= workshop.user.email
+          %td
+            = link_to 'Show', workshop, class: "btn btn-xs btn-default"
+            = link_to 'Edit', edit_workshop_path(workshop), class: "btn btn-xs btn-primary"
+            = link_to 'Destroy', workshop, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger"
+
+
