@@ -3,7 +3,11 @@ class WorkshopsController < ApplicationController
   before_action :set_workshop, only: [:show, :edit, :update, :destroy]
 
   def index
-    @workshops = Workshop.all
+    if params[:owned]
+      @workshops = Workshop.where(user_id: current_user)
+    else
+      @workshops = Workshop.all
+    end
   end
 
   def show

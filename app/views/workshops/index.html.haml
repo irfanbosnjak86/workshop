@@ -1,7 +1,8 @@
 .row
   %h2 
     List of all Workshops
-    = link_to 'New Workshop', new_workshop_path, class: "btn btn-success pull-right"
+    - if current_user
+      = link_to 'New Workshop', new_workshop_path, class: "btn btn-success pull-right"
   %hr/
   %br/
 
@@ -23,7 +24,9 @@
           %td= workshop.user.email
           %td
             = link_to 'Show', workshop, class: "btn btn-xs btn-default"
-            = link_to 'Edit', edit_workshop_path(workshop), class: "btn btn-xs btn-primary"
-            = link_to 'Destroy', workshop, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger"
+            / cheks if user is loged in and if the workshop belongs to current user
+            - if current_user && workshop.user == current_user
+              = link_to 'Edit', edit_workshop_path(workshop), class: "btn btn-xs btn-primary"
+              = link_to 'Destroy', workshop, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger"
 
 
