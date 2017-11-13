@@ -41,11 +41,11 @@ class RepairsController < ApplicationController
 
   private 
 
-  def repair_params
-    params.require(:repair).permit(:title, :malfunction_desc, :repair_desc, :repair_date, :status, :price)
-  end
+    def repair_params
+      params.require(:repair).permit(:title, :malfunction_desc, :repair_desc, :repair_date, :status, :price)
+    end
 
-  def set_repair
-    @repair = Repair.find(params[:id])
-  end
+    def set_repair
+      @repair = Repair.find(params[:id])
+    end
 end

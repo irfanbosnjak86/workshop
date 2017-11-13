@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :workshop do
-    name "MyString"
+    name "It Service"
     description "MyText"
-    user nil
+    user { User.first || association(:user) }
   end
 end
