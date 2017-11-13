@@ -1,4 +1,4 @@
-= form_for(workshop) do |f|
+= form_for(workshop, html: {class: "form-horizontal"}) do |f|
   - if workshop.errors.any?
     #error_explanation
       %h2
@@ -7,11 +7,18 @@
       %ul
         - workshop.errors.full_messages.each do |message|
           %li= message
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
-  .actions
-    = f.submit
+
+  .form-group
+    = f.label :name, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :name, class: "form-control"
+
+  .form-group
+    = f.label :description, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :description, class: "form-control"
+  
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: "btn btn-success"
+      = link_to 'Back', workshops_path, class: "btn btn-default"
